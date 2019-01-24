@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  db:
+    container_name: db_test
+    build:
+      context: ../../
+      dockerfile: contrib/docker/postgresql/Dockerfile
+    environment:
+      - DS_RO_PASS=pass
+      - POSTGRES_PASSWORD=pass
+    ports:
+      - "5432:5432"
+
+  solr:
+    container_name: solr_test
+    build:
+      context: ../../
+      dockerfile: contrib/docker/solr/Dockerfile
+    ports:
+      - "8983:8983"
+
+  redis:
+    container_name: redis_test
+    image: redis:latest
+    ports:
+      - "6379:6379"
